@@ -1,17 +1,12 @@
 const form = document.querySelector('.form')
 const input = document.querySelector('.input')
-const btn = document.querySelector('.btn')
-const display = document.querySelector('.display')
 
 form.addEventListener('submit', (event) => {
     event.preventDefault()
 
-    const stringBin = String(input.value)
-    console.log(stringBin)
-
     let reverseStringBin = ''
-    for (let i = stringBin.length -1; i >= 0; i--) {
-        reverseStringBin += stringBin[i]
+    for (let i = String(input.value).length -1; i >= 0; i--) {
+        reverseStringBin += String(input.value)[i]
     }
     console.log(reverseStringBin)
 
@@ -22,6 +17,17 @@ form.addEventListener('submit', (event) => {
         stringDec = Number(stringDec) + numberDec
     }
 
-    display.innerHTML = stringDec
+    input.value = stringDec
     console.log(stringDec)
+})
+
+input.addEventListener('keydown', (e) => {
+    if (e.keyCode == 8 || e.keyCode == 13) {
+        return
+    } else {
+        if ((e.keyCode < 48 || e.keyCode > 49) && (e.keyCode < 96 || e.keyCode > 97 )) {
+            alert('Введите число 0 или 1')
+            e.preventDefault()
+        }
+    }
 })
